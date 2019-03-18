@@ -20,6 +20,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <!-- Main stylesheet (not bootstrap) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+
     <!-- Logic for title var -->
     {% if title %}
     <title>OFB - {{ title }}</title>
@@ -74,24 +78,37 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
+
             {% block content %}{% endblock %}
         </div>
-        <!-- Navbar (probably unused) -->
-        <!--<div class="col-md-4">-->
-        <!--<div class="content-section">-->
-        <!--<h3>Our Sidebar</h3>-->
-        <!--<p class='text-muted'>You can put any information here you'd like.-->
-        <!--<ul class="list-group">-->
-        <!--<li class="list-group-item list-group-item-light">Latest Posts</li>-->
-        <!--<li class="list-group-item list-group-item-light">Announcements</li>-->
-        <!--<li class="list-group-item list-group-item-light">Calendars</li>-->
-        <!--<li class="list-group-item list-group-item-light">etc</li>-->
-        <!--</ul>-->
-        <!--</p>-->
-        <!--</div>-->
-        <!--</div>-->
+        <!--Sidebar (probably unused)-->
+        <div class="col-md-4">
+            {% if logged_in %}
+            <div class="content-section">
+                <h3>Shortcuts</h3>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Make a Transaction</li>
+                    <li class="list-group-item list-group-item-light">Transfer Money</li>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                </ul>
+                </p>
+            </div>
+            {% else %}
+            <br><br><br><br>
+            <div class="content-section">
+                <h3>Announcements</h3>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <li class="list-group-item list-group-item-light">About</li>
+                    <li class="list-group-item list-group-item-light">Testimonials</li>
+                </ul>
+                </p>
+            </div>
+            {% endif %}
+        </div>
     </div>
 </main>
+
 </body>
 </html>
 

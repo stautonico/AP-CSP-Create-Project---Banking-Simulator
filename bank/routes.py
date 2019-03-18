@@ -1,20 +1,28 @@
-from flask import render_template
+from flask import render_template, redirect, url_for, flash
 from bank import app
+from bank.forms import RegForm, LogInForm
 
 
 @app.route("/")
 def home():
-    return render_template("index.html", title="Home")
+    return render_template("index.html", title="Home", logged_in=False)
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html", title="Login")
+    form = LogInForm()
+    return render_template("login.html", title="Login", form=form, logged_in=False)
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html", title="Register")
+    form = RegForm()
+    if form.validate_on_submit():
+        flash('Thanks for registering, please login to continue!', 'success')
+        return redirect(url_for("home"))
+    if form.submit():
+        print(form.errors)
+    return render_template("register.html", title="Register", form=form)
 
 
 @app.errorhandler(404)

@@ -1,4 +1,51 @@
 {% extends "header.html" %}
 {% block content %}
-<h1>Hello World!!</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+<h3>
+    <u>Welcome to Ocean Financial Bank</u>
+    <small class="text-muted"><br>The Safest Bank On The Internet</small>
+</h3>
+<br>
+{% if not logged_in %}
+<!-- Security -->
+<div class="card p-3">
+    <h4>Security</h4>
+    <p class="lead">Ocean Financial Bank is the safest digital bank on the internet. We use 192-bit encryption as well
+        as 128-bit
+        random
+        key to ensure that your account is kept safe. We offer insurance on up to $140,000 if your account ever get
+        compromised. All our employees have endured a rigorous training program to ensure that they understand important
+        security concepts to ensure that every account is as secure as possible. All of our database managers and
+        engineers are required to have the <a
+                href="http://www.isaca.org/Certification/CISM-Certified-Information-Security-Manager/Pages/default.aspx">
+            CISM (Certified Information Security Manager)</a> and
+        <a href="https://certification.comptia.org/certifications/security">CompTIA Security+</a> certifications. This
+        guarantees that our databases are impenetrable.</p>
+</div>
+<br>
+<div class="card p-3">
+    <h4>How Our System Works</h4>
+    <p class="lead">
+        Ocean Financial Bank was built with efficiency and security in mind, which means all of the transactions we
+        process are quick and secure. We use fiber optic technology to ensure that your transaction happens as quickly
+        as possible. Every transaction is also secured with end-to-end encryption, meaning your money gets to where
+        it needs to be, 100% of the time. Our customer's privacy and happiness come before anything else, even if we
+        have to work overtime to make it happen.
+    </p>
+</div>
+<br>
+<div class="card p-3">
+    <h4>Filler Box</h4>
+    <p class="lead">
+        Ocean Financial Bank was built with efficiency and security in mind, which means all of the transactions we
+        process are quick and secure. We use fiber optic technology to ensure that your transaction happens as quickly
+        as possible. Every transaction is also secured with end-to-end encryption, meaning your money gets to where
+        it needs to be, 100% of the time. Our customer's privacy and happiness come before anything else, even if we
+        have to work overtime to make it happen.
+    </p>
+</div>
+<br>
+{% else %}
+<p>oof</p>
+{% endif %}
 {% endblock %}

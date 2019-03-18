@@ -1,4 +1,79 @@
-{% extends "header.html" %}
-{% block content %}
-<h1>Login Page</h1>
-{% endblock %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <title>OFB - Login</title>
+
+    <!-- Bootstrap (becuase this page doesn't extend the `header.html` which means it doesn't have the navbar but it also
+ doesn't inherit the required bootstrap classes-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Bootstrap templates are public domain (https://getbootstrap.com/docs/4.1/examples/sign-in/) -->
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='signin.css') }}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<form method="POST" action="" class="form-signin">
+    <img class="mb-4" src="{{ url_for('static', filename='bank_icon.png') }}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+
+
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        {# Username #}
+        <div class="form-group">
+
+            {% if form.username.errors %}
+            {{ form.username(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.username(class="form-control form-control-lg", placeholder="Username") }}
+            {% endif %}
+        </div>
+
+        {# Password #}
+        <div class="form-group">
+
+            {% if form.password.errors %}
+            {{ form.password(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.password(class="form-control form-control-lg", placeholder="Password") }}
+            {% endif %}
+        </div>
+        {# Remember Me Box#}
+        <div class="form-check">
+            {{ form.remember(class="form-check-input") }}
+            {{ form.remember.label(class="form-check-label") }}
+        </div>
+        <br>
+        {# Submit Button#}
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </fieldset>
+    <small class="text-muted">
+        <a href="#">Forgot Your Password?</a>
+    </small>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Don't Have an Account? <a href="{{ url_for('register') }}">Sign Up</a>
+        </small>
+    </div>
+    <p class="mt-5 mb-3 text-muted">&copy; Ocean Financial Bank 2018 - 2019</p>
+</form>
+</body>
+</html>
