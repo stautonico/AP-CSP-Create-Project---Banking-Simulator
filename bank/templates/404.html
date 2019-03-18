@@ -1,0 +1,20 @@
+<!-- Bootstrap (becuase this page doesn't extend the `header.html` which means it doesn't have the navbar but it also
+ doesn't inherit the required bootstrap classes-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<style>
+    #main {
+        height: 100vh;
+    }
+</style>
+
+<div class="d-flex justify-content-center align-items-center" id="main">
+    <h1 class="mr-3 pr-3 align-top border-right inline-block align-content-center">404</h1>
+    <div class="inline-block align-middle">
+        <h2 class="font-weight-normal lead" id="desc">This page does not exist.</h2>
+        <h4 class="font-weight-normal lead"><a href="{{ url_for('home') }}">Home</a></h4>
+    </div>
+
+</div>
