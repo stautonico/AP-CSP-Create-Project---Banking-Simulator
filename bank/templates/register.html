@@ -30,14 +30,29 @@
         <div class="form-group">
 
             {% if form.username.errors %}
-                {{ form.username(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.username.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+            {{ form.username(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
             {% else %}
-                {{ form.username(class="form-control form-control-lg", placeholder="Username") }}
+            {{ form.username(class="form-control form-control-lg", placeholder="Username") }}
+            {% endif %}
+        </div>
+
+        {# email #}
+        <div class="form-group">
+
+            {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email(class="form-control form-control-lg", placeholder="Email") }}
             {% endif %}
         </div>
 
@@ -46,14 +61,14 @@
         <div class="form-group">
 
             {% if form.password.errors %}
-                {{ form.password(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.password.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+            {{ form.password(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
             {% else %}
-                {{ form.password(class="form-control form-control-lg", placeholder="Password") }}
+            {{ form.password(class="form-control form-control-lg", placeholder="Password") }}
             {% endif %}
         </div>
 
@@ -61,14 +76,14 @@
         <div class="form-group">
 
             {% if form.confirm_password.errors %}
-                {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.confirm_password.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+            {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.confirm_password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
             {% else %}
-                {{ form.confirm_password(class="form-control form-control-lg", placeholder="Confirm Password") }}
+            {{ form.confirm_password(class="form-control form-control-lg", placeholder="Confirm Password") }}
             {% endif %}
         </div>
 
@@ -88,7 +103,7 @@
             Already Have an Account? <a href="{{ url_for('login') }}">Log In</a>
         </small>
     </div>
-    <p class="mt-5 text-muted"><a href="#">Terms of Service</a></p>
+    <p class="mt-5 text-muted"><a href="{{ url_for('tos') }}">Terms of Service</a></p>
     <p class="mb-3 text-muted">&copy; Ocean Financial 2018 - 2019</p>
 </form>
 </form>

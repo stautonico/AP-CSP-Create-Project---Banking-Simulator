@@ -24,6 +24,10 @@ def register():
         print(form.errors)
     return render_template("register.html", title="Register", form=form)
 
+@app.route("/tos")
+def tos():
+    return render_template("tos.html", title="Terms Of Service")
+
 
 @app.errorhandler(404)
 def page_not_found(e):
