@@ -1,0 +1,66 @@
+{% extends "header.html" %}
+{% block content %}
+<form method="POST" action="">
+    <h1 class="h3 mb-3 font-weight-normal">Find An Account</h1>
+
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+
+        {# first_name #}
+        <div class="form-group">
+
+            {% if form.first_name.errors %}
+            {{ form.first_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.first_name.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.first_name(class="form-control form-control-lg", placeholder="First Name") }}
+            {% endif %}
+        </div>
+
+        {# last_name #}
+        <div class="form-group">
+
+            {% if form.last_name.errors %}
+            {{ form.last_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.last_name.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.last_name(class="form-control form-control-lg", placeholder="Last Name") }}
+            {% endif %}
+        </div>
+
+        {# email #}
+        <div class="form-group">
+
+            {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email(class="form-control form-control-lg", placeholder="Email") }}
+            {% endif %}
+        </div>
+
+
+    </fieldset>
+    {# Submit Button#}
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already know the account number? <a href="{{ url_for('transaction') }}">Send Money Here</a>
+        </small>
+    </div>
+</form>
+{% endblock %}

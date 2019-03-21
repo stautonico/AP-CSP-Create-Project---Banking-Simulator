@@ -7,7 +7,7 @@
 
     <title>OFB - Register</title>
 
-    <!-- Bootstrap (becuase this page doesn't extend the `header.html` which means it doesn't have the navbar but it also
+    <!-- Bootstrap (because this page doesn't extend the `header.html` which means it doesn't have the navbar but it also
  doesn't inherit the required bootstrap classes-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,6 +25,36 @@
 
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
+
+        {# first_name #}
+        <div class="form-group">
+
+            {% if form.first_name.errors %}
+            {{ form.first_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.first_name.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.first_name(class="form-control form-control-lg", placeholder="First Name") }}
+            {% endif %}
+        </div>
+
+        {# last_name #}
+        <div class="form-group">
+
+            {% if form.last_name.errors %}
+            {{ form.last_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.last_name.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.last_name(class="form-control form-control-lg", placeholder="Last Name") }}
+            {% endif %}
+        </div>
 
         {# Username #}
         <div class="form-group">
@@ -105,7 +135,6 @@
     </div>
     <p class="mt-5 text-muted"><a href="{{ url_for('tos') }}">Terms of Service</a></p>
     <p class="mb-3 text-muted">&copy; Ocean Financial 2018 - 2019</p>
-</form>
 </form>
 </body>
 </html>

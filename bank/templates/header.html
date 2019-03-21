@@ -55,10 +55,17 @@
                 </div>
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav">
+
+                    {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                    <!-- Register link on navbar -->
+                    <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
                     <!-- Login link on navbar -->
                     <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
                     <!-- Register link on navbar -->
                     <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -69,10 +76,14 @@
     <div class="row">
         <div class="col-md-8">
             <!-- Enable flash messages -->
+            <!-- Dismissible came from bootstrap documentation: (https://getbootstrap.com/docs/4.0/components/alerts/#dismissing) -->
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 {{ message }}
             </div>
             {% endfor %}
@@ -83,18 +94,22 @@
         </div>
         <!--Sidebar (probably unused)-->
         <div class="col-md-4">
-            {% if logged_in %}
+            <br><br><br><br>
+            {% if current_user.is_authenticated %}
             <div class="content-section">
                 <h3>Shortcuts</h3>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-light">Make a Transaction</li>
-                    <li class="list-group-item list-group-item-light">Transfer Money</li>
-                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <a href="{{ url_for('transaction') }}">
+                        <li class="list-group-item">Make a Transaction</li>
+                    </a>
+                    <a href="{{ url_for('transfer') }}">
+                        <li class="list-group-item">Transfer Money</li>
+                    </a>
+                    <li class="list-group-item">Announcements</li>
                 </ul>
                 </p>
             </div>
             {% else %}
-            <br><br><br><br>
             <div class="content-section">
                 <h3>Information</h3>
                 <ul class="list-group">

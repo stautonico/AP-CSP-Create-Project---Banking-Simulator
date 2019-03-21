@@ -1,0 +1,55 @@
+{% extends "header.html" %}
+{% block content %}
+<h2>Transfer Money Between Accounts</h2>
+<hr>
+<h4>Choose account to transfer to</h4>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        {# account #}
+        <div class="form-group">
+            {% if form.account.errors %}
+            {{ form.account(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.account.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {% for subfield in form.account %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}&nbsp;&nbsp;</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        {# amount #}
+        <div class="form-group">
+
+            {% if form.amount.errors %}
+            {{ form.amount(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.amount.errors %}
+                <span>{{ error }}<br></span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.amount(class="form-control form-control-lg", placeholder="Amount") }}
+            {% endif %}
+        </div>
+
+    </fieldset>
+    {# Submit Button#}
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</form>
+
+<div class="border-top pt-3">
+    <small class="text-muted">
+        Don't know your recipients account number? <a href="{{ url_for('account_search') }}">Find It Here</a>
+    </small>
+</div>
+{% endblock %}

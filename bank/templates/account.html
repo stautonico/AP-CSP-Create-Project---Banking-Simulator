@@ -1,0 +1,58 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Checking:</h5>
+                <p class="card-text">${{ current_user.checking }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Savings:</h5>
+                <p class="card-text">${{ current_user.savings }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% if sent_transactions or received_transactions %}
+<br>
+<h4>All Transactions:</h4>
+{% for transaction in sent_transactions %}
+<div class="card m-3">
+    <p class="p-3">
+        <u><strong>Sent:</strong></u>
+        <br>
+        Sender: {{ transaction.sender }}
+        <br>
+        Recipient: {{ transaction.recipient }}
+        <br>
+        Amount: ${{ transaction.amount }}</p>
+</div>
+{% endfor %}
+
+{% for transaction in received_transactions %}
+<div class="card m-3">
+    <p class="p-3">
+        <u><strong>Received:</strong></u>
+        <br>
+        Sender: {{ transaction.sender }}
+        <br>
+        Recipient: {{ transaction.recipient }}
+        <br>
+        Amount: ${{ transaction.amount }}
+    </p>
+</div>
+{% endfor %}
+{% else %}
+<div class="card m-3">
+    <h4 class="p-3">You have no transactions</h4>
+    <h5 class="muted p-3"><a href="{{ url_for('transaction') }}">You can start making transactions here.</a></h5>
+</div>
+<!-- End if transactions -->
+{% endif %}
+{% endblock %}

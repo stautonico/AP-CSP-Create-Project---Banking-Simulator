@@ -22,7 +22,17 @@
     <a href="{{ url_for('home') }}"><img class="mb-4" src="{{ url_for('static', filename='bank_icon.png') }}" alt=""
                                          width="72" height="72"></a>
     <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
-
+    <!-- Enable flash messages -->
+    <!-- Dismissible came from bootstrap documentation: (https://getbootstrap.com/docs/4.0/components/alerts/#dismissing) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} fade show" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
@@ -30,14 +40,14 @@
         <div class="form-group">
 
             {% if form.username.errors %}
-                {{ form.username(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.username.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+            {{ form.username(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
             {% else %}
-                {{ form.username(class="form-control form-control-lg", placeholder="Username") }}
+            {{ form.username(class="form-control form-control-lg", placeholder="Username") }}
             {% endif %}
         </div>
 
@@ -45,14 +55,14 @@
         <div class="form-group">
 
             {% if form.password.errors %}
-                {{ form.password(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.password.errors %}
-                        <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
+            {{ form.password(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
             {% else %}
-                {{ form.password(class="form-control form-control-lg", placeholder="Password") }}
+            {{ form.password(class="form-control form-control-lg", placeholder="Password") }}
             {% endif %}
         </div>
         {# Remember Me Box#}

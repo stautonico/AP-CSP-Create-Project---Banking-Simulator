@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+{% block content %}
+<form method="POST" action="">
+    <h1 class="h3 mb-3 font-weight-normal">Find Who Owns An Account</h1>
+
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+
+        {# account_number #}
+        <div class="form-group">
+
+            {% if form.account_number.errors %}
+            {{ form.account_number(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.account_number.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.account_number(class="form-control form-control-lg", placeholder="Account Number") }}
+            {% endif %}
+        </div>
+
+    </fieldset>
+    {# Submit Button#}
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</form>
+{% endblock %}
