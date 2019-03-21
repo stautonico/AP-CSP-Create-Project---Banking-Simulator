@@ -95,17 +95,27 @@ def transfer():
     form = TransferMoneyForm()
     if form.validate_on_submit():
         if form.account.data == "Savings":
-            current_user.checking -= float(form.amount.data)
-            current_user.savings += float(form.amount.data)
-            db.session.commit()
-            flash(f"Successfully transferred ${form.amount.data} to {form.account.data}", "success")
+            if current_user.checking < float(form.amount.data):
+                flash("You do not have enough money to transfer!", "danger")
+                return redirect(url_for('transfer'))
+            else:
+                current_user.checking -= float(form.amount.data)
+                current_user.savings += float(form.amount.data)
+                db.session.commit()
+                flash(f"Successfully transferred ${form.amount.data} to {form.account.data}", "success")
             return redirect(url_for('account'))
         else:
-            current_user.checking += float(form.amount.data)
-            current_user.savings -= float(form.amount.data)
-            db.session.commit()
-            flash(f"Successfully transferred ${form.amount.data} to {form.account.data}", "success")
+            if current_user.savings < float(form.amount.data):
+                flash("You do not have enough money to transfer!", "danger")
+                return redirect(url_for('transfer'))
+
+            else:
+                current_user.checking += float(form.amount.data)
+                current_user.savings -= float(form.amount.data)
+                db.session.commit()
+                flash(f"Successfully transferred ${form.amount.data} to {form.account.data}", "success")
             return redirect(url_for('account'))
+
     return render_template("transfer.html", title="Transfer Money", form=form)
 
 
