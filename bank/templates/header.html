@@ -22,6 +22,7 @@
             crossorigin="anonymous"></script>
     <!-- Main stylesheet (not bootstrap) -->
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='footer.css') }}">
 
 
     <!-- Logic for title var -->
@@ -105,7 +106,9 @@
                     <a href="{{ url_for('transfer') }}">
                         <li class="list-group-item">Transfer Money</li>
                     </a>
-                    <li class="list-group-item">Announcements</li>
+                    <a href="#">
+                        <li class="list-group-item">Announcements</li>
+                    </a>
                 </ul>
                 </p>
             </div>
@@ -113,9 +116,15 @@
             <div class="content-section">
                 <h3>Information</h3>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-light">Announcements</li>
-                    <li class="list-group-item list-group-item-light">About</li>
-                    <li class="list-group-item list-group-item-light">Testimonials</li>
+                    <a href="#">
+                        <li class="list-group-item">Announcements</li>
+                    </a>
+                    <a href="#">
+                        <li class="list-group-item">About</li>
+                    </a>
+                    <a href="#">
+                        <li class="list-group-item">Testimonials</li>
+                    </a>
                 </ul>
                 </p>
             </div>
@@ -123,6 +132,21 @@
         </div>
     </div>
 </main>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">© Ocean Financial 2018 - 2019</span>
+        {% if current_user.is_authenticated %}
+        <a class="ml-2 float-right" href="{{ url_for('account') }}">Account</a>
+        <a class="ml-2 float-right" href="{{ url_for('logout') }}">Logout</a>
+        <a class="ml-2 float-right" href="{{ url_for('home') }}">Home</a>
+        {% else %}
+        <a class="ml-2 float-right" href="{{ url_for('register') }}">Register</a>
+        <a class="ml-2 float-right" href="{{ url_for('login') }}">Login</a>
+        <a class="ml-2 float-right" href="{{ url_for('home') }}">Home</a>
+        {% endif %}
+    </div>
+</footer>
 
 </body>
 </html>
