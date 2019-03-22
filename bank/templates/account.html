@@ -6,6 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Checking:</h5>
+                <!-- Output user checking balance -->
                 <p class="card-text">${{ current_user.checking }}</p>
             </div>
         </div>
@@ -14,40 +15,51 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Savings:</h5>
+                <!-- output user savings balance -->
                 <p class="card-text">${{ current_user.savings }}</p>
             </div>
         </div>
     </div>
 </div>
+<!--Check if there are transactions to or from the user-->
 {% if sent_transactions or received_transactions %}
 <br>
 <h4>All Transactions:</h4>
+<!-- loop through the sent transactions passed by the account function  -->
 {% for transaction in sent_transactions %}
 <div class="card m-3">
     <p class="p-3">
         <u><strong>Sent:</strong></u>
         <br>
+        <!-- Output sender of transaction -->
         Sender: {{ transaction.sender }}
         <br>
+        <!-- ouput recipient of transaction -->
         Recipient: {{ transaction.recipient }}
         <br>
+        <!-- output amount of transaction -->
         Amount: ${{ transaction.amount }}</p>
 </div>
 {% endfor %}
 
+<!-- loop through the received transactions passed by the account function  -->
 {% for transaction in received_transactions %}
 <div class="card m-3">
     <p class="p-3">
         <u><strong>Received:</strong></u>
         <br>
+        <!-- Output sender of transaction -->
         Sender: {{ transaction.sender }}
         <br>
+        <!-- ouput recipient of transaction -->
         Recipient: {{ transaction.recipient }}
         <br>
+        <!-- output amount of transaction -->
         Amount: ${{ transaction.amount }}
     </p>
 </div>
 {% endfor %}
+<!-- else the user has no transactions -->
 {% else %}
 <div class="card m-3">
     <h4 class="p-3">You have no transactions</h4>
